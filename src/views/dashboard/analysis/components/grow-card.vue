@@ -27,7 +27,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { EntIcon } from 'fe-ent-core/lib/components/icon';
+  import { EntIcon, EntCountTo } from 'fe-ent-core/lib/components';
   import { Tag, Card } from 'ant-design-vue';
   import { growCardList } from '../data';
 

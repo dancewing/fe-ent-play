@@ -76,7 +76,7 @@
 </template>
 <script lang="ts">
   import { defineComponent, ref, unref } from 'vue';
-  import { QrCode, QrCodeActionType } from '@fe-ent-extension/qrcode';
+  import { QrCode, QrCodeActionType } from 'fe-ent-qrcode';
   import LogoImg from '/@/assets/images/logo.png';
   import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
   import { EntPageWrapper } from 'fe-ent-core/lib/components/page';

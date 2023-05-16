@@ -1,6 +1,11 @@
 import { defineApplicationConfig } from 'fe-ent-build';
 
 export default defineApplicationConfig({
+  options: {
+    cssModify: {
+      primaryColor: '#1f883d',
+    },
+  },
   overrides: {
     build: {
       rollupOptions: {
@@ -9,23 +14,17 @@ export default defineApplicationConfig({
           login: 'login.html',
         },
       },
-      cssCodeSplit: true,
       minify: false,
-    },
-    esbuild: {
-      keepNames: true,
-    },
-    optimizeDeps: {
-      include: ['@iconify/iconify', 'ant-design-vue'],
+      cssCodeSplit: true,
     },
     server: {
-      port: 3100,
+      port: 3300,
       proxy: {
         '/api': {
-          target: 'http://localhost:8088',
+          target: 'http://localhost:3300',
           changeOrigin: true,
           ws: true,
-          rewrite: (path) => path.replace(new RegExp(`^/api`), ''),
+          // rewrite: (path) => path.replace(new RegExp(`^/api`), ''),
           // only https
           // secure: false
         },

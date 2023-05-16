@@ -14,10 +14,11 @@ import { registerGlobComp } from 'fe-ent-core/lib/components/register-glob-comp'
 import { initApplication } from '/@/init-application';
 
 import 'ant-design-vue/dist/antd.css';
-import 'fe-ent-core/lib/theme/index.less';
+import 'fe-ent-core/dist/app.css';
+import 'fe-ent-login/dist/style.css';
 
-import { LoginRoute } from '@fe-ent-app/login';
-import { setupPages } from '@fe-ent-app/page';
+import { LoginRoute } from 'fe-ent-login';
+import { initRouteAndLayout } from 'fe-ent-page';
 
 import App from './App.vue';
 
@@ -40,7 +41,7 @@ async function bootstrap() {
   // Initialize internal system configuration
   await initAppConfigStore();
 
-  setupPages();
+  initRouteAndLayout(app);
   entRouter.addBasicRoutes([LoginRoute]);
 
   app.use(entRouter);

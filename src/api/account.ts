@@ -1,4 +1,4 @@
-import { defHttp } from '@ent-core/utils/http/axios';
+import { defHttp } from 'fe-ent-core/lib/utils/http/axios';
 import { GetAccountInfoModel } from '../model/account-model';
 
 enum Api {

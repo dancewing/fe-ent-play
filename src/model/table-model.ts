@@ -1,4 +1,4 @@
-import { BasicPageParams, BasicFetchResult } from '@ent-core/logics/api';
+import { BasicPageParams, BasicFetchResult } from 'fe-ent-core/lib/logics/api';
 /**
  * @description: Request list interface parameters
  */

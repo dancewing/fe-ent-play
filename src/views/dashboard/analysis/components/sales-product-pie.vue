@@ -6,7 +6,7 @@
 <script lang="ts" setup>
   import { defineComponent, Ref, ref, watch, type PropType } from 'vue';
   import { Card } from 'ant-design-vue';
-  import { useEcharts } from '@fe-ent-extension/echarts';
+  import { useEcharts } from 'fe-ent-echarts';
 
   const props = defineProps({
     loading: Boolean,

@@ -4,7 +4,7 @@
 <script lang="ts">
   import { defineComponent, PropType, ref, Ref, onMounted } from 'vue';
 
-  import { useEcharts } from '@fe-ent-extension/echarts';
+  import { useEcharts } from 'fe-ent-echarts';
   import { getLineData } from './data';
 
   export default defineComponent({

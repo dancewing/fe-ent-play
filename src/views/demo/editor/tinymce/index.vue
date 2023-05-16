@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
-  import { Tinymce } from '@fe-ent-extension/tinymce';
+  import { Tinymce } from 'fe-ent-tinymce';
   import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
 
   export default defineComponent({
@@ -19,3 +19,6 @@
     },
   });
 </script>
+<style>
+@import url("fe-ent-tinymce/dist/style.css");
+</style>

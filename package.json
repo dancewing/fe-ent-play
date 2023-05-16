@@ -1,5 +1,5 @@
 {
-  "name": "fe-app-admin",
+  "name": "fe-app-play",
   "version": "1.0.0",
   "author": {
     "name": "jeff qian",
@@ -24,15 +24,15 @@
   },
   "dependencies": {
     "ant-design-vue": "3.2.17",
-    "fe-ent-code-editor": "^1.5.8",
-    "fe-ent-core": "^1.5.8",
-    "fe-ent-echarts": "^1.5.8",
-    "fe-ent-flow-chart": "^1.5.8",
-    "fe-ent-login": "^1.5.8",
-    "fe-ent-markdown": "^1.5.8",
-    "fe-ent-page": "^1.5.8",
-    "fe-ent-qrcode": "^1.5.8",
-    "fe-ent-tinymce": "^1.5.8",
+    "fe-ent-code-editor": "1.5.13",
+    "fe-ent-core": "1.5.13",
+    "fe-ent-echarts": "1.5.13",
+    "fe-ent-flow-chart": "1.5.13",
+    "fe-ent-login": "1.5.13",
+    "fe-ent-markdown": "1.5.13",
+    "fe-ent-page": "1.5.13",
+    "fe-ent-qrcode": "1.5.13",
+    "fe-ent-tinymce": "1.5.13",
     "vue": "3.2.47"
   },
   "devDependencies": {
@@ -60,7 +60,7 @@
     "eslint-plugin-prettier": "^4.2.0",
     "eslint-plugin-vue": "^9.10.0",
     "esno": "^0.10.1",
-    "fe-ent-build": "^1.5.8",
+    "fe-ent-build": "1.5.13",
     "fs-extra": "^10.0.0",
     "husky": "^7.0.4",
     "inquirer": "^8.2.0",

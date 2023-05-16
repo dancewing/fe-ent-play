@@ -3,7 +3,7 @@
 </template>
 <script lang="ts" setup>
   import { onMounted, ref, Ref } from 'vue';
-  import { useEcharts } from '@fe-ent-extension/echarts';
+  import { useEcharts } from 'fe-ent-echarts';
   import { basicProps } from './props';
 
   defineProps({

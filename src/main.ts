@@ -12,12 +12,12 @@ import { setupGlobDirectives } from 'fe-ent-core/lib/directives';
 import { setupI18n } from 'fe-ent-core/lib/locales/setup-i18n';
 import { registerGlobComp } from 'fe-ent-core/lib/components/register-glob-comp';
 import { initApplication } from '/@/init-application';
-import EntCore from 'fe-ent-core';
 
 import 'ant-design-vue/dist/antd.css';
-import 'fe-ent-core/lib/theme/index.less';
+import 'fe-ent-core/dist/app.css';
+import 'fe-ent-page/dist/style.css';
 
-import { setupPages, getBasicRoutes } from '@fe-ent-app/page';
+import { initRouteAndLayout, getBasicRoutes } from 'fe-ent-page';
 
 import App from './App.vue';
 async function bootstrap() {
@@ -39,9 +39,7 @@ async function bootstrap() {
   // Register global components
   registerGlobComp(app);
 
-  setupPages();
-
-  app.use(EntCore);
+  initRouteAndLayout(app);
 
   entRouter.addBasicRoutes(getBasicRoutes());
   entRouter.addBizRoutes(import.meta.globEager(`/src/routes/modules/**/*.ts`));

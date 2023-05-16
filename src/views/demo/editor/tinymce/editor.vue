@@ -15,7 +15,7 @@
   import { EntForm, FormSchema } from 'fe-ent-core/lib/components/form';
   import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
   import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { Tinymce } from '@fe-ent-extension/tinymce';
+  import { Tinymce } from 'fe-ent-tinymce';
   import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
 
   const schemas: FormSchema[] = [
