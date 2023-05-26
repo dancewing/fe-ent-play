@@ -1,21 +1,20 @@
 <template>
-  <EntPageWrapper title="自定义组件示例">
-    <CollapseContainer title="自定义表单">
-      <EntForm @register="register" @submit="handleSubmit">
+  <ent-page-wrapper title="自定义组件示例">
+    <ent-collapse-container title="自定义表单">
+      <ent-form @register="register" @submit="handleSubmit">
         <template #f3="{ model, field }">
           <a-input v-model:value="model[field]" placeholder="自定义slot" />
         </template>
-      </EntForm>
-    </CollapseContainer>
-  </EntPageWrapper>
+      </ent-form>
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent, h } from 'vue';
-  import { EntForm, FormSchema, useForm } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import { useMessage } from 'fe-ent-core/es/hooks';
   import { Input } from 'ant-design-vue';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
 
   const schemas: FormSchema[] = [
     {
@@ -62,7 +61,9 @@
     },
   ];
   export default defineComponent({
-    components: { EntForm, CollapseContainer: EntCollapseContainer, EntPageWrapper, [Input.name]: Input },
+    components: {
+      [Input.name]: Input,
+    },
     setup() {
       const { createMessage } = useMessage();
       const [register, { setProps }] = useForm({
@@ -76,7 +77,7 @@
         register,
         schemas,
         handleSubmit: (values: any) => {
-          createMessage.success('click search,values:' + JSON.stringify(values));
+          createMessage.success(`click search,values:${JSON.stringify(values)}`);
         },
         setProps,
       };

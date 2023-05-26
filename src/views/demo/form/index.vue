@@ -1,87 +1,87 @@
 <template>
-  <EntPageWrapper title="表单基础示例" contentFullHeight>
-    <CollapseContainer title="基础示例">
-      <EntForm
-        autoFocusFirstItem
-        :labelWidth="200"
+  <ent-page-wrapper title="表单基础示例" content-full-height>
+    <ent-collapse-container title="基础示例">
+      <ent-form
+        auto-focus-first-item
+        :label-width="200"
         :schemas="schemas"
-        :actionColOptions="{ span: 24 }"
+        :action-col-options="{ span: 24 }"
         @submit="handleSubmit"
         @reset="handleReset"
       >
         <template #selectA="{ model, field }">
           <a-select
+            v-model:value="model[field]"
             :options="optionsA"
             mode="multiple"
-            v-model:value="model[field]"
+            allow-clear
             @change="valueSelectA = model[field]"
-            allowClear
           />
         </template>
         <template #selectB="{ model, field }">
           <a-select
+            v-model:value="model[field]"
             :options="optionsB"
             mode="multiple"
-            v-model:value="model[field]"
+            allow-clear
             @change="valueSelectB = model[field]"
-            allowClear
           />
         </template>
         <template #localSearch="{ model, field }">
           <ApiSelect
-            :api="optionsListApi"
-            showSearch
             v-model:value="model[field]"
-            optionFilterProp="label"
-            resultField="list"
-            labelField="name"
-            valueField="id"
+            :api="optionsListApi"
+            show-search
+            option-filter-prop="label"
+            result-field="list"
+            label-field="name"
+            value-field="id"
           />
         </template>
         <template #remoteSearch="{ model, field }">
           <ApiSelect
-            :api="optionsListApi"
-            showSearch
             v-model:value="model[field]"
-            :filterOption="false"
-            resultField="list"
-            labelField="name"
-            valueField="id"
+            :api="optionsListApi"
+            show-search
+            :filter-option="false"
+            result-field="list"
+            label-field="name"
+            value-field="id"
             :params="searchParams"
             @search="onSearch"
           />
         </template>
-      </EntForm>
-    </CollapseContainer>
-  </EntPageWrapper>
+      </ent-form>
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
-  import { computed, defineComponent, unref, ref } from 'vue';
-  import { EntForm, FormSchema, ApiSelect } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import { computed, defineComponent, ref, unref } from 'vue';
+  import { ApiSelect } from 'fe-ent-core';
+  import { useMessage } from 'fe-ent-core/es/hooks';
 
   import { optionsListApi } from '/@/api/select';
   import { useDebounceFn } from '@vueuse/core';
   import { treeOptionsListApi } from '/@/api/tree';
   import { Select } from 'ant-design-vue';
   import { cloneDeep } from 'lodash';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
+  import type { Recordable } from 'fe-ent-core/es/types';
 
   const valueSelectA = ref<string[]>([]);
   const valueSelectB = ref<string[]>([]);
   const options = ref<Recordable[]>([]);
-  for (let i = 1; i < 10; i++) options.value.push({ label: '选项' + i, value: `${i}` });
+  for (let i = 1; i < 10; i++) options.value.push({ label: `选项${i}`, value: `${i}` });
 
   const optionsA = computed(() => {
     return cloneDeep(unref(options)).map((op) => {
-      op.disabled = unref(valueSelectB).indexOf(op.value) !== -1;
+      op.disabled = unref(valueSelectB).includes(op.value);
       return op;
     });
   });
   const optionsB = computed(() => {
     return cloneDeep(unref(options)).map((op) => {
-      op.disabled = unref(valueSelectA).indexOf(op.value) !== -1;
+      op.disabled = unref(valueSelectA).includes(op.value);
       return op;
     });
   });
@@ -578,9 +578,6 @@
 
   export default defineComponent({
     components: {
-      EntForm,
-      CollapseContainer: EntCollapseContainer,
-      EntPageWrapper,
       ApiSelect,
       ASelect: Select,
     },
@@ -608,7 +605,7 @@
           keyword.value = '';
         },
         handleSubmit: (values: any) => {
-          createMessage.success('click search,values:' + JSON.stringify(values));
+          createMessage.success(`click search,values:${JSON.stringify(values)}`);
         },
         check,
       };

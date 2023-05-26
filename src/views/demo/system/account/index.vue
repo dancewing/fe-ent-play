@@ -1,13 +1,13 @@
 <template>
-  <EntPageWrapper dense contentFullHeight fixedHeight contentClass="flex">
+  <ent-page-wrapper dense content-full-height fixed-height content-class="flex">
     <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
-    <EntTable @register="registerTable" class="w-3/4 xl:w-4/5" :searchInfo="searchInfo">
+    <ent-table class="w-3/4 xl:w-4/5" :search-info="searchInfo" @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate">新增账号</a-button>
+        <ent-button type="primary" @click="handleCreate">新增账号</ent-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
-          <EntTableAction
+          <ent-table-action
             :actions="[
               {
                 icon: 'clarity:info-standard-line',
@@ -33,27 +33,26 @@
           />
         </template>
       </template>
-    </EntTable>
+    </ent-table>
     <AccountModal @register="registerModal" @success="handleSuccess" />
-  </EntPageWrapper>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent, reactive } from 'vue';
 
-  import { EntTable, useTable, EntTableAction } from 'fe-ent-core/lib/components/table';
+  import { useGo } from 'fe-ent-core/es/hooks';
+  import { useModal } from 'fe-ent-core/es/components/modal';
+  import { useTable } from 'fe-ent-core/es/components/table';
   import { getAccountList } from '/@/api/system';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
   import DeptTree from './dept-tree.vue';
 
-  import { useModal } from 'fe-ent-core/lib/components/modal';
   import AccountModal from './account-modal.vue';
 
   import { columns, searchFormSchema } from './account-data';
-  import { useGo } from 'fe-ent-core/lib/hooks/web/use-page';
 
   export default defineComponent({
     name: 'AccountManagement',
-    components: { EntTable, EntPageWrapper, DeptTree, AccountModal, EntTableAction },
+    components: { DeptTree, AccountModal },
     setup() {
       const go = useGo();
       const [registerModal, { openModal }] = useModal();
@@ -117,7 +116,7 @@
       }
 
       function handleView(record: Recordable) {
-        go('/system/account_detail/' + record.id);
+        go(`/system/account_detail/${record.id}`);
       }
 
       return {

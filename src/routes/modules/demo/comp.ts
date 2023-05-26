@@ -1,9 +1,8 @@
-import type { AppRouteModule } from 'fe-ent-core/lib/router/types';
+import { getParentLayout } from 'fe-ent-core/es/router';
+import { t } from 'fe-ent-core/es/hooks';
+import type { AppRouteRecordRaw } from 'fe-ent-core/es/router';
 
-import { getParentLayout } from 'fe-ent-core/lib/router/constant';
-import { t } from 'fe-ent-core/lib/hooks/web/use-i18n';
-
-const comp: AppRouteModule = {
+const comp: AppRouteRecordRaw = {
   path: '/comp',
   name: 'Comp',
   component: 'LAYOUT',

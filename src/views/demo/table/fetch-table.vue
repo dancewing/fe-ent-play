@@ -1,22 +1,20 @@
 <template>
-  <EntPageWrapper contentBackground contentClass="flex" dense contentFullHeight fixedHeight>
-    <EntTable @register="registerTable">
+  <ent-page-wrapper content-background content-class="flex" dense content-full-height fixed-height>
+    <ent-table @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleReloadCurrent"> 刷新当前页 </a-button>
-        <a-button type="primary" @click="handleReload"> 刷新并返回第一页 </a-button>
+        <ent-button type="primary" @click="handleReloadCurrent"> 刷新当前页 </ent-button>
+        <ent-button type="primary" @click="handleReload"> 刷新并返回第一页 </ent-button>
       </template>
-    </EntTable>
-  </EntPageWrapper>
+    </ent-table>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntTable, useTable } from 'fe-ent-core/lib/components/table';
+  import { useTable } from 'fe-ent-core/es/components/table';
   import { getBasicColumns } from './table-data';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
 
   import { demoListApi } from '/@/api/table';
   export default defineComponent({
-    components: { EntTable, EntPageWrapper },
     setup() {
       const [registerTable, { reload }] = useTable({
         title: '远程加载示例',

@@ -11,18 +11,6 @@
   </ent-page-wrapper>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue';
-  import { EntStrengthMeter } from 'fe-ent-core/lib/components/strength-meter';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-
-  export default defineComponent({
-    components: {
-      EntStrengthMeter,
-      EntPageWrapper,
-    },
-  });
-</script>
 <style lang="less" scoped>
   .demo-wrap {
     width: 50%;

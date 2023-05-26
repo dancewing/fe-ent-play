@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <EntTable @register="registerTable">
+    <ent-table @register="registerTable">
       <template #id="{ record }"> ID: {{ record.id }} </template>
       <template #no="{ record }">
         <Tag color="green">
@@ -11,22 +11,23 @@
         <Avatar :size="60" :src="record.avatar" />
       </template>
       <template #img="{ text }">
-        <EntTableImg :size="60" :simpleShow="true" :imgList="text" />
+        <ent-table-img :size="60" :simple-show="true" :img-list="text" />
       </template>
-      <template #imgs="{ text }"> <EntTableImg :size="60" :imgList="text" /> </template>
+      <template #imgs="{ text }"> <ent-table-img :size="60" :img-list="text" /> </template>
 
       <template #category="{ record }">
         <Tag color="green">
           {{ record.no }}
         </Tag>
       </template>
-    </EntTable>
+    </ent-table>
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntTable, useTable, BasicColumn, EntTableImg } from 'fe-ent-core/lib/components/table';
-  import { Tag, Avatar } from 'ant-design-vue';
+  import type { BasicColumn } from 'fe-ent-core/es/components/table/interface';
+  import { useTable } from 'fe-ent-core/es/components/table';
+  import { Avatar, Tag } from 'ant-design-vue';
   import { demoListApi } from '/@/api/table';
   const columns: BasicColumn[] = [
     {
@@ -79,13 +80,13 @@
     },
   ];
   export default defineComponent({
-    components: { EntTable, EntTableImg, Tag, Avatar },
+    components: { Tag, Avatar },
     setup() {
       const [registerTable] = useTable({
         title: '自定义列内容',
         titleHelpMessage: '表格中所有头像、图片均为mock生成，仅用于演示图片占位',
         api: demoListApi,
-        columns: columns,
+        columns,
         bordered: true,
         showTableSetting: true,
       });

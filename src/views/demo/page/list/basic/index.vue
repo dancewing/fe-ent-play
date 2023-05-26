@@ -1,5 +1,5 @@
 <template>
-  <EntPageWrapper :class="prefixCls" title="标准列表">
+  <ent-page-wrapper :class="prefixCls" title="标准列表">
     <div :class="`${prefixCls}__top`">
       <a-row :gutter="12">
         <a-col :span="8" :class="`${prefixCls}__top-col`">
@@ -23,11 +23,11 @@
           <a-list-item class="list">
             <a-list-item-meta>
               <template #avatar>
-                <Icon class="icon" v-if="item.icon" :icon="item.icon" :color="item.color" />
+                <ent-icon v-if="item.icon" class="icon" :icon="item.icon" :color="item.color" />
               </template>
               <template #title>
                 <span>{{ item.title }}</span>
-                <div class="extra" v-if="item.extra">
+                <div v-if="item.extra" class="extra">
                   {{ item.extra }}
                 </div>
               </template>
@@ -48,21 +48,16 @@
         </template>
       </a-list>
     </div>
-  </EntPageWrapper>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
-  import { Progress, Row, Col } from 'ant-design-vue';
   import { defineComponent } from 'vue';
-  import Icon from 'fe-ent-core/lib/components/icon';
+  import { Col, List, Progress, Row } from 'ant-design-vue';
   import { cardList } from './data';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  import { List } from 'ant-design-vue';
 
   export default defineComponent({
     components: {
-      Icon,
       Progress,
-      EntPageWrapper,
       [List.name]: List,
       [List.Item.name]: List.Item,
       AListItemMeta: List.Item.Meta,

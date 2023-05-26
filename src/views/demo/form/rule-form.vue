@@ -1,23 +1,22 @@
 <template>
-  <EntPageWrapper title="表单校验示例">
+  <ent-page-wrapper title="表单校验示例">
     <div class="mb-4">
-      <a-button @click="validateForm" class="mr-2"> 手动校验表单 </a-button>
-      <a-button @click="resetValidate" class="mr-2"> 清空校验信息 </a-button>
-      <a-button @click="getFormValues" class="mr-2"> 获取表单值 </a-button>
-      <a-button @click="setFormValues" class="mr-2"> 设置表单值 </a-button>
-      <a-button @click="resetFields" class="mr-2"> 重置 </a-button>
+      <ent-button class="mr-2" @click="validateForm"> 手动校验表单 </ent-button>
+      <ent-button class="mr-2" @click="resetValidate"> 清空校验信息 </ent-button>
+      <ent-button class="mr-2" @click="getFormValues"> 获取表单值 </ent-button>
+      <ent-button class="mr-2" @click="setFormValues"> 设置表单值 </ent-button>
+      <ent-button class="mr-2" @click="resetFields"> 重置 </ent-button>
     </div>
-    <CollapseContainer title="表单校验">
-      <EntForm @register="register" @submit="handleSubmit" />
-    </CollapseContainer>
-  </EntPageWrapper>
+    <ent-collapse-container title="表单校验">
+      <ent-form @register="register" @submit="handleSubmit" />
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntForm, FormSchema, useForm } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import { useMessage } from 'fe-ent-core/es/hooks';
   import { isAccountExist } from '/@/api/system';
 
   const schemas: FormSchema[] = [
@@ -204,7 +203,6 @@
   ];
 
   export default defineComponent({
-    components: { EntForm, CollapseContainer: EntCollapseContainer, EntPageWrapper },
     setup() {
       const { createMessage } = useMessage();
       const [
@@ -230,7 +228,7 @@
       }
       function getFormValues() {
         const values = getFieldsValue();
-        createMessage.success('values:' + JSON.stringify(values));
+        createMessage.success(`values:${JSON.stringify(values)}`);
       }
       function setFormValues() {
         setFieldsValue({
@@ -245,7 +243,7 @@
         register,
         schemas,
         handleSubmit: (values: any) => {
-          createMessage.success('click search,values:' + JSON.stringify(values));
+          createMessage.success(`click search,values:${JSON.stringify(values)}`);
         },
         getFormValues,
         setFormValues,

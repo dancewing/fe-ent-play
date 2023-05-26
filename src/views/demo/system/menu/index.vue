@@ -1,12 +1,12 @@
 <template>
   <div>
-    <EntTable @register="registerTable" @fetch-success="onFetchSuccess">
+    <ent-table @register="registerTable" @fetch-success="onFetchSuccess">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增菜单 </a-button>
+        <ent-button type="primary" @click="handleCreate"> 新增菜单 </ent-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
-          <EntTableAction
+          <ent-table-action
             :actions="[
               {
                 icon: 'clarity:note-edit-line',
@@ -25,24 +25,24 @@
           />
         </template>
       </template>
-    </EntTable>
+    </ent-table>
     <MenuDrawer @register="registerDrawer" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent, nextTick } from 'vue';
 
-  import { EntTable, useTable, EntTableAction } from 'fe-ent-core/lib/components/table';
+  import { useTable } from 'fe-ent-core/es/components/table';
+  import { useDrawer } from 'fe-ent-core/es/components/drawer';
   import { getMenuList } from '/@/api/system';
 
-  import { useDrawer } from 'fe-ent-core/lib/components/drawer';
   import MenuDrawer from './menu-drawer.vue';
 
   import { columns, searchFormSchema } from './menu-data';
 
   export default defineComponent({
     name: 'MenuManagement',
-    components: { EntTable, MenuDrawer, EntTableAction },
+    components: { MenuDrawer },
     setup() {
       const [registerDrawer, { openDrawer }] = useDrawer();
       const [registerTable, { reload, expandAll }] = useTable({

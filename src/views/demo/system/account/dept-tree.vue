@@ -1,13 +1,13 @@
 <template>
   <div class="m-4 mr-0 overflow-hidden bg-white">
-    <EntTree
+    <ent-tree
       title="部门列表"
       toolbar
       search
-      treeWrapperClassName="h-[calc(100%-35px)] overflow-auto"
-      :clickRowToExpand="false"
-      :treeData="treeData"
-      :fieldNames="{ key: 'id', title: 'deptName' }"
+      tree-wrapper-class-name="h-[calc(100%-35px)] overflow-auto"
+      :click-row-to-expand="false"
+      :tree-data="treeData"
+      :field-names="{ key: 'id', title: 'deptName' }"
       @select="handleSelect"
     />
   </div>
@@ -15,13 +15,11 @@
 <script lang="ts">
   import { defineComponent, onMounted, ref } from 'vue';
 
-  import { EntTree, TreeItem } from 'fe-ent-core/lib/components/tree';
+  import type { TreeItem } from 'fe-ent-core/es/components/tree/interface';
   import { getDeptList } from '/@/api/system';
 
   export default defineComponent({
     name: 'DeptTree',
-    components: { EntTree },
-
     emits: ['select'],
     setup(_, { emit }) {
       const treeData = ref<TreeItem[]>([]);

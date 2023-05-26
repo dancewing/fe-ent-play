@@ -1,18 +1,17 @@
 <template>
-  <EntModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
-    <EntForm @register="registerForm" />
-  </EntModal>
+  <ent-modal v-bind="$attrs" :title="getTitle" @register="registerModal" @ok="handleSubmit">
+    <ent-form @register="registerForm" />
+  </ent-modal>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, computed, unref } from 'vue';
-  import { EntModal, useModalInner } from 'fe-ent-core/lib/components/modal';
-  import { EntForm, useForm } from 'fe-ent-core/lib/components/form';
+  import { computed, defineComponent, ref, unref } from 'vue';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import { useModalInner } from 'fe-ent-core/es/components/modal';
   import { accountFormSchema } from './account-data';
   import { getDeptList } from '/@/api/system';
 
   export default defineComponent({
     name: 'AccountModal',
-    components: { EntModal, EntForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {
       const isUpdate = ref(true);

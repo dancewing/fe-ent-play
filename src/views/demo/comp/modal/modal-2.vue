@@ -1,19 +1,18 @@
 <template>
-  <EntModal
-    @register="register"
+  <ent-modal
     title="Modal Title"
-    :helpMessage="['提示1', '提示2']"
-    :okButtonProps="{ disabled: true }"
+    :help-message="['提示1', '提示2']"
+    :ok-button-props="{ disabled: true }"
+    @register="register"
   >
-    <a-button type="primary" @click="closeModal" class="mr-2"> 从内部关闭弹窗 </a-button>
-    <a-button type="primary" @click="setModalProps"> 从内部修改title </a-button>
-  </EntModal>
+    <ent-button type="primary" class="mr-2" @click="closeModal"> 从内部关闭弹窗 </ent-button>
+    <ent-button type="primary" @click="setModalProps"> 从内部修改title </ent-button>
+  </ent-modal>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntModal, useModalInner } from 'fe-ent-core/lib/components/modal';
+  import { useModalInner } from 'fe-ent-core/es/components/modal';
   export default defineComponent({
-    components: { EntModal },
     setup() {
       const [register, { closeModal, setModalProps }] = useModalInner();
       return {

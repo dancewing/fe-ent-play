@@ -1,10 +1,9 @@
-import type { AppRouteModule } from 'fe-ent-core/lib/router/types';
+import { getParentLayout } from 'fe-ent-core/es/router';
+import { RoleEnum } from 'fe-ent-core/es/logics/enums';
+import { t } from 'fe-ent-core/es/hooks';
+import type { AppRouteRecordRaw } from 'fe-ent-core/es/router';
 
-import { getParentLayout } from 'fe-ent-core/lib/router/constant';
-import { RoleEnum } from 'fe-ent-core/lib/logics/enums/role-enum';
-import { t } from 'fe-ent-core/lib/hooks/web/use-i18n';
-
-const permission: AppRouteModule = {
+const permission: AppRouteRecordRaw = {
   path: '/permission',
   name: 'Permission',
   component: 'LAYOUT',

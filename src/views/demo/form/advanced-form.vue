@@ -1,19 +1,18 @@
 <template>
-  <EntPageWrapper title="可折叠表单示例">
-    <CollapseContainer title="基础收缩示例">
-      <EntForm @register="register" />
-    </CollapseContainer>
+  <ent-page-wrapper title="可折叠表单示例">
+    <ent-collapse-container title="基础收缩示例">
+      <ent-form @register="register" />
+    </ent-collapse-container>
 
-    <CollapseContainer title="超过3行自动收起，折叠时保留2行" class="mt-4">
-      <EntForm @register="register1" />
-    </CollapseContainer>
-  </EntPageWrapper>
+    <ent-collapse-container title="超过3行自动收起，折叠时保留2行" class="mt-4">
+      <ent-form @register="register1" />
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntForm, FormSchema, useForm } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
 
   const getSchamas = (): FormSchema[] => {
     return [
@@ -149,7 +148,6 @@
     ];
   }
   export default defineComponent({
-    components: { EntForm, CollapseContainer: EntCollapseContainer, EntPageWrapper },
     setup() {
       const [register] = useForm({
         labelWidth: 120,
@@ -163,9 +161,9 @@
       const extraSchemas: FormSchema[] = [];
       for (let i = 14; i < 30; i++) {
         extraSchemas.push({
-          field: 'field' + i,
+          field: `field${i}`,
           component: 'Input',
-          label: '字段' + i,
+          label: `字段${i}`,
           colProps: {
             span: 8,
           },

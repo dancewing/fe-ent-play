@@ -1,12 +1,12 @@
 <template>
   <div>
-    <EntTable @register="registerTable">
+    <ent-table @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增部门 </a-button>
+        <ent-button type="primary" @click="handleCreate"> 新增部门 </ent-button>
       </template>
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
-          <EntTableAction
+          <ent-table-action
             :actions="[
               {
                 icon: 'clarity:note-edit-line',
@@ -25,24 +25,23 @@
           />
         </template>
       </template>
-    </EntTable>
+    </ent-table>
     <DeptModal @register="registerModal" @success="handleSuccess" />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-
-  import { EntTable, useTable, EntTableAction } from 'fe-ent-core/lib/components/table';
+  import { useTable } from 'fe-ent-core/es/components/table';
+  import { useModal } from 'fe-ent-core/es/components/modal';
   import { getDeptList } from '/@/api/system';
 
-  import { useModal } from 'fe-ent-core/lib/components/modal';
   import DeptModal from './dept-modal.vue';
 
   import { columns, searchFormSchema } from './dept-data';
 
   export default defineComponent({
     name: 'DeptManagement',
-    components: { EntTable, DeptModal, EntTableAction },
+    components: { DeptModal },
     setup() {
       const [registerModal, { openModal }] = useModal();
       const [registerTable, { reload }] = useTable({

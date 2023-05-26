@@ -1,5 +1,5 @@
 <template>
-  <EntPageWrapper title="关于">
+  <ent-page-wrapper title="关于">
     <template #headerContent>
       <div class="flex justify-between items-center">
         <span class="flex-1">
@@ -9,17 +9,17 @@
         </span>
       </div>
     </template>
-    <EntDescription @register="infoRegister" class="enter-y" />
-    <EntDescription @register="register" class="my-4 enter-y" />
-    <EntDescription @register="registerDev" class="enter-y" />
-  </EntPageWrapper>
+    <ent-description class="enter-y" @register="infoRegister" />
+    <ent-description class="my-4 enter-y" @register="register" />
+    <ent-description class="enter-y" @register="registerDev" />
+  </ent-page-wrapper>
 </template>
 <script lang="ts" setup>
-  import { defineComponent, h } from 'vue';
+  import { h } from 'vue';
   import { Tag } from 'ant-design-vue';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  import { EntDescription, DescItem, useDescription } from 'fe-ent-core/lib/components/description';
-  import { GITHUB_URL, SITE_URL, DOC_URL } from 'fe-ent-core/lib/logics/settings/site-setting';
+  import { DOC_URL, GITHUB_URL, SITE_URL } from 'fe-ent-core/es/logics';
+  import { useDescription } from 'fe-ent-core/es/components/description';
+  import type { DescItem } from 'fe-ent-core/es/components/description/interface';
 
   const { pkg, lastBuildTime } = __APP_INFO__;
 
@@ -30,10 +30,6 @@
 
   const commonTagRender = (color: string) => (curVal) => h(Tag, { color }, () => curVal);
   const commonLinkRender = (text: string) => (href) => h('a', { href, target: '_blank' }, text);
-
-  defineComponent({
-    components: { EntPageWrapper, EntDescription },
-  });
 
   const infoSchema: DescItem[] = [
     {
@@ -71,8 +67,6 @@
     github: GITHUB_URL,
   };
 
-  console.log(infoData);
-
   Object.keys(dependencies).forEach((key) => {
     schema.push({ field: key, label: key });
   });
@@ -84,7 +78,7 @@
   const [register] = useDescription({
     title: '生产环境依赖',
     data: dependencies,
-    schema: schema,
+    schema,
     column: 3,
   });
 

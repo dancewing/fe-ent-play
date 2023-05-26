@@ -1,5 +1,5 @@
 <template>
-  <EntPageWrapper contentBackground title="按钮权限控制" contentClass="p-4">
+  <ent-page-wrapper content-background title="按钮权限控制" content-class="p-4">
     <CurrentPermissionMode />
     <p>
       当前拥有的code列表: <a> {{ permissionStore.getPermCodeList }} </a>
@@ -12,65 +12,70 @@
       show-icon
     />
     <Divider />
-    <a-button type="primary" class="mr-2" @click="switchToken(2)" :disabled="!isBackPremissionMode">
+    <ent-button
+      type="primary"
+      class="mr-2"
+      :disabled="!isBackPremissionMode"
+      @click="switchToken(2)"
+    >
       点击切换按钮权限(用户id为2)
-    </a-button>
-    <a-button type="primary" @click="switchToken(1)" :disabled="!isBackPremissionMode">
+    </ent-button>
+    <ent-button type="primary" :disabled="!isBackPremissionMode" @click="switchToken(1)">
       点击切换按钮权限(用户id为1,默认)
-    </a-button>
+    </ent-button>
 
     <template v-if="isBackPremissionMode">
       <Divider>组件方式判断权限</Divider>
-      <Authority :value="'1000'">
-        <a-button type="primary" class="mx-4"> 拥有code ['1000']权限可见 </a-button>
-      </Authority>
+      <ent-authority :value="'1000'">
+        <ent-button type="primary" class="mx-4"> 拥有code ['1000']权限可见 </ent-button>
+      </ent-authority>
 
-      <Authority :value="'2000'">
-        <a-button color="success" class="mx-4"> 拥有code ['2000']权限可见 </a-button>
-      </Authority>
+      <ent-authority :value="'2000'">
+        <ent-button color="success" class="mx-4"> 拥有code ['2000']权限可见 </ent-button>
+      </ent-authority>
 
-      <Authority :value="['1000', '2000']">
-        <a-button color="error" class="mx-4"> 拥有code ['1000','2000']角色权限可见 </a-button>
-      </Authority>
+      <ent-authority :value="['1000', '2000']">
+        <ent-button color="error" class="mx-4"> 拥有code ['1000','2000']角色权限可见 </ent-button>
+      </ent-authority>
 
       <Divider>函数方式方式判断权限</Divider>
-      <a-button v-if="hasPermission('1000')" type="primary" class="mx-4">
+      <ent-button v-if="hasPermission('1000')" type="primary" class="mx-4">
         拥有code ['1000']权限可见
-      </a-button>
+      </ent-button>
 
-      <a-button v-if="hasPermission('2000')" color="success" class="mx-4">
+      <ent-button v-if="hasPermission('2000')" color="success" class="mx-4">
         拥有code ['2000']权限可见
-      </a-button>
+      </ent-button>
 
-      <a-button v-if="hasPermission(['1000', '2000'])" color="error" class="mx-4">
+      <ent-button v-if="hasPermission(['1000', '2000'])" color="error" class="mx-4">
         拥有code ['1000','2000']角色权限可见
-      </a-button>
+      </ent-button>
 
       <Divider>指令方式方式判断权限(该方式不能动态修改权限.)</Divider>
-      <a-button v-auth="'1000'" type="primary" class="mx-4"> 拥有code ['1000']权限可见 </a-button>
+      <ent-button v-auth="'1000'" type="primary" class="mx-4">
+        拥有code ['1000']权限可见
+      </ent-button>
 
-      <a-button v-auth="'2000'" color="success" class="mx-4"> 拥有code ['2000']权限可见 </a-button>
+      <ent-button v-auth="'2000'" color="success" class="mx-4">
+        拥有code ['2000']权限可见
+      </ent-button>
 
-      <a-button v-auth="['1000', '2000']" color="error" class="mx-4">
+      <ent-button v-auth="['1000', '2000']" color="error" class="mx-4">
         拥有code ['1000','2000']角色权限可见
-      </a-button>
+      </ent-button>
     </template>
-  </EntPageWrapper>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
-  import { defineComponent, computed } from 'vue';
+  import { computed, defineComponent } from 'vue';
   import { Alert, Divider } from 'ant-design-vue';
+  import { PermissionModeEnum } from 'fe-ent-core/es/logics/enums';
+  import { useAppStore, usePermissionStore, useUserStore } from 'fe-ent-core/es/store';
+  import { usePermission } from 'fe-ent-core/es/hooks';
   import CurrentPermissionMode from '../current-permission-mode.vue';
-  import { usePermission } from 'fe-ent-core/lib/hooks/web/use-permission';
-  import { EntAuthority as Authority } from 'fe-ent-core/lib/components/authority';
-  import { usePermissionStore } from 'fe-ent-core/lib/store/modules/permission';
-  import { PermissionModeEnum } from 'fe-ent-core/lib/logics/enums/app-enum';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  import { useAppStore } from 'fe-ent-core/lib/store/modules/app';
-  import { useUserStore } from 'fe-ent-core/lib/store/modules/user';
 
   export default defineComponent({
-    components: { Alert, EntPageWrapper, CurrentPermissionMode, Divider, Authority },
+    components: { Alert, CurrentPermissionMode, Divider },
     setup() {
       const { hasPermission } = usePermission();
       const permissionStore = usePermissionStore();
@@ -83,7 +88,7 @@
 
       async function switchToken(userId: number) {
         // 本函数切换用户登录Token的部分仅用于演示，实际生产时切换身份应当重新登录
-        const token = 'fakeToken' + userId;
+        const token = `fakeToken${userId}`;
         userStore.setToken(token);
 
         // 重新获取用户信息和菜单

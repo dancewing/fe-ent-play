@@ -1,30 +1,23 @@
 <template>
-  <EntPageWrapper title="表单增删示例">
-    <CollapseContainer title="表单增删">
-      <EntForm @register="register" @submit="handleSubmit">
+  <ent-page-wrapper title="表单增删示例">
+    <ent-collapse-container title="表单增删">
+      <ent-form @register="register" @submit="handleSubmit">
         <template #add="{ field }">
-          <EntButton v-if="Number(field) === 0" @click="add">+</EntButton>
-          <EntButton v-if="field > 0" @click="del(field)">-</EntButton>
+          <ent-button v-if="Number(field) === 0" @click="add">+</ent-button>
+          <ent-button v-if="field > 0" @click="del(field)">-</ent-button>
         </template>
-      </EntForm>
-    </CollapseContainer>
-  </EntPageWrapper>
+      </ent-form>
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
-  import { EntForm, useForm } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
+  import { useForm } from 'fe-ent-core/es/components/form';
   import { Input } from 'ant-design-vue';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  import { EntButton } from 'fe-ent-core/lib/components/Button';
 
   export default defineComponent({
     components: {
-      EntForm,
-      CollapseContainer: EntCollapseContainer,
-      EntPageWrapper,
       [Input.name]: Input,
-      EntButton,
     },
     setup() {
       const [register, { appendSchemaByField, removeSchemaByField, validate }] = useForm({
@@ -77,7 +70,7 @@
           {
             field: `field${n.value}a`,
             component: 'Input',
-            label: '字段' + n.value,
+            label: `字段${n.value}`,
             colProps: {
               span: 8,
             },
@@ -89,7 +82,7 @@
           {
             field: `field${n.value}b`,
             component: 'Input',
-            label: '字段' + n.value,
+            label: `字段${n.value}`,
             colProps: {
               span: 8,
             },

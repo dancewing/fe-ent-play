@@ -1,32 +1,39 @@
 <template>
-  <EntPageWrapper title="UseForm操作示例">
+  <ent-page-wrapper title="UseForm操作示例">
     <div class="mb-4">
-      <a-button @click="setProps({ labelWidth: 150 })" class="mr-2"> 更改labelWidth </a-button>
-      <a-button @click="setProps({ labelWidth: 120 })" class="mr-2"> 还原labelWidth </a-button>
-      <a-button @click="setProps({ size: 'large' })" class="mr-2"> 更改Size </a-button>
-      <a-button @click="setProps({ size: 'default' })" class="mr-2"> 还原Size </a-button>
-      <a-button @click="setProps({ disabled: true })" class="mr-2"> 禁用表单 </a-button>
-      <a-button @click="setProps({ disabled: false })" class="mr-2"> 解除禁用 </a-button>
-      <a-button @click="setProps({ compact: true })" class="mr-2"> 紧凑表单 </a-button>
-      <a-button @click="setProps({ compact: false })" class="mr-2"> 还原正常间距 </a-button>
-      <a-button @click="setProps({ actionColOptions: { span: 8 } })" class="mr-2">
+      <ent-button class="mr-2" @click="setProps({ labelWidth: 150 })"> 更改labelWidth </ent-button>
+      <ent-button class="mr-2" @click="setProps({ labelWidth: 120 })"> 还原labelWidth </ent-button>
+      <ent-button class="mr-2" @click="setProps({ size: 'large' })"> 更改Size </ent-button>
+      <ent-button class="mr-2" @click="setProps({ size: 'default' })"> 还原Size </ent-button>
+      <ent-button class="mr-2" @click="setProps({ disabled: true })"> 禁用表单 </ent-button>
+      <ent-button class="mr-2" @click="setProps({ disabled: false })"> 解除禁用 </ent-button>
+      <ent-button class="mr-2" @click="setProps({ compact: true })"> 紧凑表单 </ent-button>
+      <ent-button class="mr-2" @click="setProps({ compact: false })"> 还原正常间距 </ent-button>
+      <ent-button class="mr-2" @click="setProps({ actionColOptions: { span: 8 } })">
         操作按钮位置
-      </a-button>
+      </ent-button>
     </div>
     <div class="mb-4">
-      <a-button @click="setProps({ showActionButtonGroup: false })" class="mr-2">
+      <ent-button class="mr-2" @click="setProps({ showActionButtonGroup: false })">
         隐藏操作按钮
-      </a-button>
-      <a-button @click="setProps({ showActionButtonGroup: true })" class="mr-2">
+      </ent-button>
+      <ent-button class="mr-2" @click="setProps({ showActionButtonGroup: true })">
         显示操作按钮
-      </a-button>
-      <a-button @click="setProps({ showResetButton: false })" class="mr-2"> 隐藏重置按钮 </a-button>
-      <a-button @click="setProps({ showResetButton: true })" class="mr-2"> 显示重置按钮 </a-button>
-      <a-button @click="setProps({ showSubmitButton: false })" class="mr-2">
+      </ent-button>
+      <ent-button class="mr-2" @click="setProps({ showResetButton: false })">
+        隐藏重置按钮
+      </ent-button>
+      <ent-button class="mr-2" @click="setProps({ showResetButton: true })">
+        显示重置按钮
+      </ent-button>
+      <ent-button class="mr-2" @click="setProps({ showSubmitButton: false })">
         隐藏查询按钮
-      </a-button>
-      <a-button @click="setProps({ showSubmitButton: true })" class="mr-2"> 显示查询按钮 </a-button>
-      <a-button
+      </ent-button>
+      <ent-button class="mr-2" @click="setProps({ showSubmitButton: true })">
+        显示查询按钮
+      </ent-button>
+      <ent-button
+        class="mr-2"
         @click="
           setProps({
             resetButtonOptions: {
@@ -35,11 +42,11 @@
             },
           })
         "
-        class="mr-2"
       >
         修改重置按钮
-      </a-button>
-      <a-button
+      </ent-button>
+      <ent-button
+        class="mr-2"
         @click="
           setProps({
             submitButtonOptions: {
@@ -48,23 +55,21 @@
             },
           })
         "
-        class="mr-2"
       >
         修改查询按钮
-      </a-button>
-      <a-button @click="handleLoad" class="mr-2"> 联动回显 </a-button>
+      </ent-button>
+      <ent-button class="mr-2" @click="handleLoad"> 联动回显 </ent-button>
     </div>
-    <CollapseContainer title="useForm示例">
-      <EntForm @register="register" @submit="handleSubmit" />
-    </CollapseContainer>
-  </EntPageWrapper>
+    <ent-collapse-container title="useForm示例">
+      <ent-form @register="register" @submit="handleSubmit" />
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntForm, FormSchema, useForm } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import { useMessage } from 'fe-ent-core/es/hooks';
   import { areaRecord } from '/@/api/cascader';
 
   const schemas: FormSchema[] = [
@@ -213,7 +218,6 @@
   ];
 
   export default defineComponent({
-    components: { EntForm, CollapseContainer: EntCollapseContainer, EntPageWrapper },
     setup() {
       const { createMessage } = useMessage();
 
@@ -258,7 +262,7 @@
         register,
         schemas,
         handleSubmit: (values: Recordable) => {
-          createMessage.success('click search,values:' + JSON.stringify(values));
+          createMessage.success(`click search,values:${JSON.stringify(values)}`);
         },
         setProps,
         handleLoad,

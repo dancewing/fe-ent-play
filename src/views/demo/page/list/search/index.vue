@@ -1,11 +1,11 @@
 <template>
-  <EntPageWrapper :class="prefixCls" title="搜索列表">
+  <ent-page-wrapper :class="prefixCls" title="搜索列表">
     <template #headerContent>
-      <EntForm
+      <ent-form
         :class="`${prefixCls}__header-form`"
-        :labelWidth="100"
+        :label-width="100"
         :schemas="schemas"
-        :showActionButtonGroup="false"
+        :show-action-button-group="false"
       />
     </template>
 
@@ -21,7 +21,7 @@
                 <div :class="`${prefixCls}__action`">
                   <template v-for="action in actions" :key="action.icon">
                     <div :class="`${prefixCls}__action-item`">
-                      <Icon
+                      <ent-icon
                         v-if="action.icon"
                         :class="`${prefixCls}__action-icon`"
                         :icon="action.icon"
@@ -50,23 +50,16 @@
         </template>
       </a-list>
     </div>
-  </EntPageWrapper>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
-  import { Tag } from 'ant-design-vue';
   import { defineComponent } from 'vue';
-  import Icon from 'fe-ent-core/lib/components/icon';
-  import { EntForm } from 'fe-ent-core/lib/components/form';
-  import { actions, searchList, schemas } from './data';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  import { List } from 'ant-design-vue';
+  import { List, Tag } from 'ant-design-vue';
+  import { actions, schemas, searchList } from './data';
 
   export default defineComponent({
     components: {
-      Icon,
       Tag,
-      EntForm,
-      EntPageWrapper,
       [List.name]: List,
       [List.Item.name]: List.Item,
       AListItemMeta: List.Item.Meta,

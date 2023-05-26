@@ -1,7 +1,7 @@
-import type { AppRouteModule } from 'fe-ent-core/lib/router/types';
-import { t } from 'fe-ent-core/lib/hooks/web/use-i18n';
+import { t } from 'fe-ent-core/es/hooks';
+import type { AppRouteRecordRaw } from 'fe-ent-core/es/router';
 
-const iframe: AppRouteModule = {
+const iframe: AppRouteRecordRaw = {
   path: '/frame',
   name: 'Frame',
   component: 'LAYOUT',

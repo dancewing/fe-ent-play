@@ -1,23 +1,21 @@
 <template>
-  <EntPageWrapper title="右键菜单示例">
-    <CollapseContainer title="Simple">
-      <a-button type="primary" @contextmenu="handleContext"> Right Click on me </a-button>
-    </CollapseContainer>
+  <ent-page-wrapper title="右键菜单示例">
+    <ent-collapse-container title="Simple">
+      <ent-button type="primary" @contextmenu="handleContext"> Right Click on me </ent-button>
+    </ent-collapse-container>
 
-    <CollapseContainer title="Multiple" class="mt-4">
-      <a-button type="primary" @contextmenu="handleMultipleContext"> Right Click on me </a-button>
-    </CollapseContainer>
-  </EntPageWrapper>
+    <ent-collapse-container title="Multiple" class="mt-4">
+      <ent-button type="primary" @contextmenu="handleMultipleContext">
+        Right Click on me
+      </ent-button>
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { useContextMenu } from 'fe-ent-core/lib/hooks/web/use-context-menu';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import { useContextMenu, useMessage } from 'fe-ent-core/es/hooks';
 
   export default defineComponent({
-    components: { CollapseContainer: EntCollapseContainer, EntPageWrapper },
     setup() {
       const [createContextMenu] = useContextMenu();
       const { createMessage } = useMessage();

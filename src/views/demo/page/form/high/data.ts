@@ -1,4 +1,5 @@
-import { FormSchema } from 'fe-ent-core/lib/components/form';
+import type { LabelValueOptions } from 'fe-ent-core/es/types';
+import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
 
 const basicOptions: LabelValueOptions = [
   {

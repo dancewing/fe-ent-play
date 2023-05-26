@@ -1,4 +1,4 @@
-import { defHttp } from 'fe-ent-core/lib/utils/http/axios';
+import { defHttp } from 'fe-ent-core/es/utils';
 
 enum Api {
   // The address does not exist

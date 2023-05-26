@@ -1,12 +1,12 @@
 <template>
-  <CollapseContainer title="安全设置" :canExpan="false">
+  <ent-collapse-container title="安全设置" :can-expan="false">
     <List>
       <template v-for="item in list" :key="item.key">
         <ListItem>
           <ListItemMeta>
             <template #title>
               {{ item.title }}
-              <div class="extra" v-if="item.extra">
+              <div v-if="item.extra" class="extra">
                 {{ item.extra }}
               </div>
             </template>
@@ -17,17 +17,19 @@
         </ListItem>
       </template>
     </List>
-  </CollapseContainer>
+  </ent-collapse-container>
 </template>
 <script lang="ts">
-  import { List } from 'ant-design-vue';
   import { defineComponent } from 'vue';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-
+  import { List } from 'ant-design-vue';
   import { secureSettingList } from './data';
 
   export default defineComponent({
-    components: { CollapseContainer: EntCollapseContainer, List, ListItem: List.Item, ListItemMeta: List.Item.Meta },
+    components: {
+      List,
+      ListItem: List.Item,
+      ListItemMeta: List.Item.Meta,
+    },
     setup() {
       return {
         list: secureSettingList,

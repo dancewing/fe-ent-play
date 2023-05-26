@@ -1,20 +1,20 @@
 <template>
   <div class="p-4">
-    <EntTable @register="register">
+    <ent-table @register="register">
       <template #toolbar>
-        <a-button type="primary" @click="expandAll">展开全部</a-button>
-        <a-button type="primary" @click="collapseAll">折叠全部</a-button>
+        <ent-button type="primary" @click="expandAll">展开全部</ent-button>
+        <ent-button type="primary" @click="collapseAll">折叠全部</ent-button>
       </template>
-    </EntTable>
+    </ent-table>
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntTable, useTable } from 'fe-ent-core/lib/components/table';
+  import { useTable } from 'fe-ent-core/es/components/table';
   import { getBasicColumns, getTreeTableData } from './table-data';
+  import type { Recordable } from 'fe-ent-core/es/types';
 
   export default defineComponent({
-    components: { EntTable },
     setup() {
       const [register, { expandAll, collapseAll }] = useTable({
         title: '树形表格',

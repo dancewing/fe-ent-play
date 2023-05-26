@@ -1,21 +1,22 @@
 <template>
   <div class="p-4">
-    <EntTable
+    <ent-table
+      :before-edit-submit="beforeEditSubmit"
       @register="registerTable"
       @edit-end="handleEditEnd"
       @edit-cancel="handleEditCancel"
-      :beforeEditSubmit="beforeEditSubmit"
     />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntTable, useTable, BasicColumn } from 'fe-ent-core/lib/components/table';
+  import type { BasicColumn } from 'fe-ent-core/es/components/table/interface';
+  import { useMessage } from 'fe-ent-core/es/hooks';
+  import { useTable } from 'fe-ent-core/es/components/table';
   import { optionsListApi } from '/@/api/select';
 
   import { demoListApi } from '/@/api/table';
   import { treeOptionsListApi } from '/@/api/tree';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
   const columns: BasicColumn[] = [
     {
       title: '输入框',
@@ -149,12 +150,11 @@
     },
   ];
   export default defineComponent({
-    components: { EntTable },
     setup() {
       const [registerTable] = useTable({
         title: '可编辑单元格示例',
         api: demoListApi,
-        columns: columns,
+        columns,
         showIndexColumn: false,
         bordered: true,
       });

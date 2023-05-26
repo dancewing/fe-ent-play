@@ -1,15 +1,16 @@
 <template>
-  <EntDrawer v-bind="$attrs" @register="register" title="Drawer Title" width="50%">
+  <ent-drawer v-bind="$attrs" title="Drawer Title" width="50%" @register="register">
     <div>
-      <EntForm @register="registerForm" />
+      <ent-form @register="registerForm" />
     </div>
-  </EntDrawer>
+  </ent-drawer>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntDrawer, useDrawerInner } from 'fe-ent-core/lib/components/drawer';
+  import { useDrawerInner } from 'fe-ent-core/es/components/drawer';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
 
-  import { EntForm, FormSchema, useForm } from 'fe-ent-core/lib/components/form';
   const schemas: FormSchema[] = [
     {
       field: 'field1',
@@ -30,7 +31,6 @@
     },
   ];
   export default defineComponent({
-    components: { EntDrawer, EntForm },
     setup() {
       const [registerForm, { setFieldsValue }] = useForm({
         labelWidth: 120,

@@ -1,10 +1,10 @@
 <template>
   <ent-page-wrapper title="MarkDown组件嵌入Form示例">
     <ent-collapse-container title="MarkDown表单">
-      <EntForm
-        :labelWidth="100"
+      <ent-form
+        :label-width="100"
         :schemas="schemas"
-        :actionColOptions="{ span: 24 }"
+        :action-col-options="{ span: 24 }"
         @submit="handleSubmit"
       />
     </ent-collapse-container>
@@ -12,11 +12,9 @@
 </template>
 <script lang="ts">
   import { defineComponent, h } from 'vue';
-  import { EntForm, FormSchema } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
+  import { useMessage } from 'fe-ent-core/es/hooks';
   import { EntMarkDown } from 'fe-ent-markdown';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
 
   const schemas: FormSchema[] = [
     {
@@ -43,14 +41,13 @@
     },
   ];
   export default defineComponent({
-    components: { EntForm, EntCollapseContainer, EntPageWrapper },
     setup() {
       const { createMessage } = useMessage();
 
       return {
         schemas,
         handleSubmit: (values: any) => {
-          createMessage.success('click search,values:' + JSON.stringify(values));
+          createMessage.success(`click search,values:${JSON.stringify(values)}`);
         },
       };
     },

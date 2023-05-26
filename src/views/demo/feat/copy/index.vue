@@ -1,23 +1,19 @@
 <template>
-  <EntPageWrapper title="文本复制示例">
-    <CollapseContainer class="w-full h-32 bg-white rounded-md" title="Copy Example">
+  <ent-page-wrapper title="文本复制示例">
+    <ent-collapse-container class="w-full h-32 bg-white rounded-md" title="Copy Example">
       <div class="flex justify-center">
-        <a-input placeholder="请输入" v-model:value="value" />
-        <a-button type="primary" @click="handleCopy"> Copy </a-button>
+        <a-input v-model:value="value" placeholder="请输入" />
+        <ent-button type="primary" @click="handleCopy"> Copy </ent-button>
       </div>
-    </CollapseContainer>
-  </EntPageWrapper>
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
-  import { defineComponent, unref, ref } from 'vue';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useCopyToClipboard } from 'fe-ent-core/lib/hooks/web/use-copy-to-clipboard';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import { defineComponent, ref, unref } from 'vue';
+  import { useCopyToClipboard, useMessage } from 'fe-ent-core/es/hooks';
 
   export default defineComponent({
     name: 'Copy',
-    components: { CollapseContainer: EntCollapseContainer, EntPageWrapper },
     setup() {
       const valueRef = ref('');
       const { createMessage } = useMessage();

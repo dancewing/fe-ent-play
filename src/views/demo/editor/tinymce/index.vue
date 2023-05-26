@@ -1,15 +1,14 @@
 <template>
-  <EntPageWrapper title="富文本组件示例">
-    <Tinymce v-model="value" @change="handleChange" width="100%" />
-  </EntPageWrapper>
+  <ent-page-wrapper title="富文本组件示例">
+    <Tinymce v-model="value" width="100%" @change="handleChange" />
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
   import { Tinymce } from 'fe-ent-tinymce';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
 
   export default defineComponent({
-    components: { Tinymce, EntPageWrapper },
+    components: { Tinymce },
     setup() {
       const value = ref('hello world!');
       function handleChange(value: string) {
@@ -19,6 +18,3 @@
     },
   });
 </script>
-<style>
-@import url("fe-ent-tinymce/dist/style.css");
-</style>

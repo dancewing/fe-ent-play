@@ -1,25 +1,24 @@
 <template>
-  <EntPageWrapper title="动态表单示例">
+  <ent-page-wrapper title="动态表单示例">
     <div class="mb-4">
-      <a-button @click="changeLabel3" class="mr-2"> 更改字段3label </a-button>
-      <a-button @click="changeLabel34" class="mr-2"> 同时更改字段3,4label </a-button>
-      <a-button @click="appendField" class="mr-2"> 往字段3后面插入字段10 </a-button>
-      <a-button @click="deleteField" class="mr-2"> 删除字段11 </a-button>
+      <ent-button class="mr-2" @click="changeLabel3"> 更改字段3label </ent-button>
+      <ent-button class="mr-2" @click="changeLabel34"> 同时更改字段3,4label </ent-button>
+      <ent-button class="mr-2" @click="appendField"> 往字段3后面插入字段10 </ent-button>
+      <ent-button class="mr-2" @click="deleteField"> 删除字段11 </ent-button>
     </div>
-    <CollapseContainer title="动态表单示例,动态根据表单内其他值改变">
-      <EntForm @register="register" />
-    </CollapseContainer>
+    <ent-collapse-container title="动态表单示例,动态根据表单内其他值改变">
+      <ent-form @register="register" />
+    </ent-collapse-container>
 
-    <CollapseContainer class="mt-5" title="componentProps动态改变">
-      <EntForm @register="register1" />
-    </CollapseContainer>
-  </EntPageWrapper>
+    <ent-collapse-container class="mt-5" title="componentProps动态改变">
+      <ent-form @register="register1" />
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntForm, FormSchema, useForm } from 'fe-ent-core/lib/components/form';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
 
   const schemas: FormSchema[] = [
     {
@@ -179,7 +178,6 @@
   ];
 
   export default defineComponent({
-    components: { EntForm, CollapseContainer: EntCollapseContainer, EntPageWrapper },
     setup() {
       const [register, { setProps, updateSchema, appendSchemaByField, removeSchemaByField }] =
         useForm({

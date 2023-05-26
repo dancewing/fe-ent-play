@@ -1,9 +1,9 @@
 <template>
   <div class="p-4">
-    <EntTable @register="registerTable">
+    <ent-table @register="registerTable">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'action'">
-          <EntTableAction
+          <ent-table-action
             :actions="[
               {
                 label: '删除',
@@ -11,7 +11,7 @@
                 onClick: handleDelete.bind(null, record),
               },
             ]"
-            :dropDownActions="[
+            :drop-down-actions="[
               {
                 label: '启用',
                 popConfirm: {
@@ -23,17 +23,14 @@
           />
         </template>
       </template>
-    </EntTable>
+    </ent-table>
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import {
-    EntTable,
-    useTable,
-    BasicColumn,
-    EntTableAction,
-  } from 'fe-ent-core/lib/components/table';
+  import type { Recordable } from 'fe-ent-core/es/types';
+  import type { BasicColumn } from 'fe-ent-core/es/components/table/interface';
+  import { useTable } from 'fe-ent-core/es/components/table';
 
   import { demoListApi } from '/@/api/table';
   const columns: BasicColumn[] = [
@@ -69,12 +66,11 @@
     },
   ];
   export default defineComponent({
-    components: { EntTable, EntTableAction },
     setup() {
       const [registerTable] = useTable({
         title: 'TableAction组件及固定列示例',
         api: demoListApi,
-        columns: columns,
+        columns,
         rowSelection: { type: 'radio' },
         bordered: true,
         actionColumn: {

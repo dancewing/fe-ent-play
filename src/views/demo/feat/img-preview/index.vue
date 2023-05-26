@@ -1,14 +1,12 @@
 <template>
-  <EntPageWrapper title="图片预览示例">
-    <ImagePreview :imageList="imgList" />
-    <a-button @click="openImg" type="primary">无预览图</a-button>
-  </EntPageWrapper>
+  <ent-page-wrapper title="图片预览示例">
+    <ent-image-preview :image-list="imgList" />
+    <ent-button type="primary" @click="openImg">无预览图</ent-button>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { createImgPreview, ImagePreview } from 'fe-ent-core/lib/components/preview';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  // import { PreviewActions } from 'fe-ent-core/lib/components/Preview/src/typing';
+  import { createImgPreview } from 'fe-ent-core/es/components/preview';
 
   const imgList: string[] = [
     'https://picsum.photos/id/66/346/216',
@@ -16,7 +14,6 @@
     'https://picsum.photos/id/68/346/216',
   ];
   export default defineComponent({
-    components: { EntPageWrapper, ImagePreview },
     setup() {
       function openImg() {
         const onImgLoad = ({ index, url, dom }) => {

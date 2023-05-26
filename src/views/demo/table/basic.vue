@@ -1,40 +1,39 @@
 <template>
   <div class="p-4">
-    <EntTable
+    <ent-table
       title="基础示例"
-      titleHelpMessage="温馨提醒"
+      title-help-message="温馨提醒"
       :columns="columns"
-      :dataSource="data"
-      :canResize="canResize"
+      :data-source="data"
+      :can-resize="canResize"
       :loading="loading"
       :striped="striped"
       :bordered="border"
-      showTableSetting
+      show-table-setting
       :pagination="pagination"
       @columns-change="handleColumnChange"
     >
       <template #toolbar>
-        <a-button type="primary" @click="toggleCanResize">
+        <ent-button type="primary" @click="toggleCanResize">
           {{ !canResize ? '自适应高度' : '取消自适应' }}
-        </a-button>
-        <a-button type="primary" @click="toggleBorder">
+        </ent-button>
+        <ent-button type="primary" @click="toggleBorder">
           {{ !border ? '显示边框' : '隐藏边框' }}
-        </a-button>
-        <a-button type="primary" @click="toggleLoading"> 开启loading </a-button>
-        <a-button type="primary" @click="toggleStriped">
+        </ent-button>
+        <ent-button type="primary" @click="toggleLoading"> 开启loading </ent-button>
+        <ent-button type="primary" @click="toggleStriped">
           {{ !striped ? '显示斑马纹' : '隐藏斑马纹' }}
-        </a-button>
+        </ent-button>
       </template>
-    </EntTable>
+    </ent-table>
   </div>
 </template>
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
-  import { EntTable, ColumnChangeParam } from 'fe-ent-core/lib/components/table';
   import { getBasicColumns, getBasicData } from './table-data';
+  import type { ColumnChangeParam } from 'fe-ent-core/es/components/table/interface';
 
   export default defineComponent({
-    components: { EntTable },
     setup() {
       const canResize = ref(false);
       const loading = ref(false);

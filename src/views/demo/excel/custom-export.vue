@@ -1,28 +1,22 @@
 <template>
-  <EntPageWrapper title="导出示例" content="可以选择导出格式">
-    <EntTable title="基础表格" :columns="columns" :dataSource="data">
+  <ent-page-wrapper title="导出示例" content="可以选择导出格式">
+    <ent-table title="基础表格" :columns="columns" :data-source="data">
       <template #toolbar>
-        <a-button @click="openModal"> 导出 </a-button>
+        <ent-button @click="openModal"> 导出 </ent-button>
       </template>
-    </EntTable>
-    <EntExportExcelModal @register="register" @success="defaultHeader" />
-  </EntPageWrapper>
+    </ent-table>
+    <ent-export-excel-modal @register="register" @success="defaultHeader" />
+  </ent-page-wrapper>
 </template>
 
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntTable } from 'fe-ent-core/lib/components/table';
-  import {
-    jsonToSheetXlsx,
-    EntExportExcelModal,
-    ExportModalResult,
-  } from 'fe-ent-core/lib/components/excel';
+  import { jsonToSheetXlsx } from 'fe-ent-core/es/components/excel';
+  import { useModal } from 'fe-ent-core/es/components/modal';
   import { columns, data } from './data';
-  import { useModal } from 'fe-ent-core/lib/components/modal';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import type { ExportModalResult } from 'fe-ent-core/es/components/excel/interface';
 
   export default defineComponent({
-    components: { EntTable, EntExportExcelModal, EntPageWrapper },
     setup() {
       function defaultHeader({ filename, bookType }: ExportModalResult) {
         // 默认Object.keys(data[0])作为header

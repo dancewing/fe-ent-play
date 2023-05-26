@@ -8,18 +8,17 @@
       <a-descriptions-item label="转账金额"> 500元 </a-descriptions-item>
     </a-descriptions>
     <a-divider />
-    <EntForm @register="register" />
+    <ent-form @register="register" />
   </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntForm, useForm } from 'fe-ent-core/lib/components/form';
+  import { useForm } from 'fe-ent-core/es/components/form';
+  import { Alert, Descriptions, Divider } from 'ant-design-vue';
   import { step2Schemas } from './data';
-  import { Alert, Divider, Descriptions } from 'ant-design-vue';
 
   export default defineComponent({
     components: {
-      EntForm,
       [Alert.name]: Alert,
       [Divider.name]: Divider,
       [Descriptions.name]: Descriptions,
@@ -63,7 +62,7 @@
             });
             emit('next', values);
           }, 1500);
-        } catch (error) {}
+        } catch {}
       }
 
       return { register };

@@ -1,49 +1,50 @@
 <template>
-  <EntPageWrapper title="消息示例">
-    <CollapseContainer class="w-full h-32 bg-white rounded-md" title="Message">
-      <a-button @click="infoMsg('Info message')" class="mr-2"> Info </a-button>
-      <a-button @click="successMsg('Success message')" class="mr-2" color="success">
+  <ent-page-wrapper title="消息示例">
+    <ent-collapse-container class="w-full h-32 bg-white rounded-md" title="Message">
+      <ent-button class="mr-2" @click="infoMsg('Info message')"> Info </ent-button>
+      <ent-button class="mr-2" color="success" @click="successMsg('Success message')">
         Success
-      </a-button>
-      <a-button @click="warningMsg('Warning message')" class="mr-2" color="warning">
+      </ent-button>
+      <ent-button class="mr-2" color="warning" @click="warningMsg('Warning message')">
         Warning
-      </a-button>
-      <a-button @click="errorMsg('Error message')" class="mr-2" color="error"> Error </a-button>
-      <a-button @click="handleLoading" class="mr-2" type="primary"> Loading </a-button>
-    </CollapseContainer>
+      </ent-button>
+      <ent-button class="mr-2" color="error" @click="errorMsg('Error message')"> Error </ent-button>
+      <ent-button class="mr-2" type="primary" @click="handleLoading"> Loading </ent-button>
+    </ent-collapse-container>
 
-    <CollapseContainer class="w-full h-32 mt-5 bg-white rounded-md" title="Comfirm">
-      <a-button @click="handleConfirm('info')" class="mr-2"> Info </a-button>
-      <a-button @click="handleConfirm('warning')" color="warning" class="mr-2"> Warning </a-button>
-      <a-button @click="handleConfirm('success')" color="success" class="mr-2"> Success </a-button>
-      <a-button @click="handleConfirm('error')" color="error" class="mr-2"> Error </a-button>
-    </CollapseContainer>
+    <ent-collapse-container class="w-full h-32 mt-5 bg-white rounded-md" title="Comfirm">
+      <ent-button class="mr-2" @click="handleConfirm('info')"> Info </ent-button>
+      <ent-button color="warning" class="mr-2" @click="handleConfirm('warning')">
+        Warning
+      </ent-button>
+      <ent-button color="success" class="mr-2" @click="handleConfirm('success')">
+        Success
+      </ent-button>
+      <ent-button color="error" class="mr-2" @click="handleConfirm('error')"> Error </ent-button>
+    </ent-collapse-container>
 
-    <CollapseContainer class="w-full h-32 mt-5 bg-white rounded-md" title="Modal">
-      <a-button @click="handleInfoModal" class="mr-2"> Info </a-button>
-      <a-button @click="handleSuccessModal" color="success" class="mr-2"> Success </a-button>
-      <a-button @click="handleErrorModal" color="error" class="mr-2"> Error </a-button>
-      <a-button @click="handleWarningModal" color="warning" class="mr-2"> Warning </a-button>
-      <a-button @click="handleAjax" color="warning" class="mr-2"> test ajax error </a-button>
-    </CollapseContainer>
+    <ent-collapse-container class="w-full h-32 mt-5 bg-white rounded-md" title="Modal">
+      <ent-button class="mr-2" @click="handleInfoModal"> Info </ent-button>
+      <ent-button color="success" class="mr-2" @click="handleSuccessModal"> Success </ent-button>
+      <ent-button color="error" class="mr-2" @click="handleErrorModal"> Error </ent-button>
+      <ent-button color="warning" class="mr-2" @click="handleWarningModal"> Warning </ent-button>
+      <ent-button color="warning" class="mr-2" @click="handleAjax"> test ajax error </ent-button>
+    </ent-collapse-container>
 
-    <CollapseContainer
+    <ent-collapse-container
       class="w-full h-32 mt-5 bg-white rounded-md"
       title="Notification 用法与上面一致"
     >
-      <a-button @click="handleNotify" color="success" class="mr-2"> Success </a-button>
-    </CollapseContainer>
-  </EntPageWrapper>
+      <ent-button color="success" class="mr-2" @click="handleNotify"> Success </ent-button>
+    </ent-collapse-container>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntCollapseContainer } from 'fe-ent-core/lib/components/container';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  import { defHttp } from 'fe-ent-core/lib/utils/http/axios';
+  import { defHttp } from 'fe-ent-core/es/utils';
+  import { useMessage } from 'fe-ent-core/es/hooks';
 
   export default defineComponent({
-    components: { CollapseContainer: EntCollapseContainer, EntPageWrapper },
     setup() {
       const {
         createMessage,

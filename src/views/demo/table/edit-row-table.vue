@@ -1,31 +1,32 @@
 <template>
   <div class="p-4">
-    <EntTable @register="registerTable" @edit-change="onEditChange" :dataSource="dataSource">
+    <ent-table :data-source="dataSource" @register="registerTable" @edit-change="onEditChange">
       <template #toolbar>
-        <a-button type="primary" @click="addRecord">添加行</a-button>
+        <ent-button type="primary" @click="addRecord">添加行</ent-button>
       </template>
-      <template #action="{ record, column }">
-        <EntTableAction :actions="createActions(record, column)" />
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'action'">
+          <ent-table-action :actions="createActions(record, column)" />
+        </template>
       </template>
-    </EntTable>
+    </ent-table>
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, onMounted, ref, Ref } from 'vue';
-  import {
-    EntTable,
-    useTable,
-    EntTableAction,
-    BasicColumn,
-    TableActionItem,
-    EditRecordRow,
-  } from 'fe-ent-core/lib/components/table';
+  import { defineComponent, onMounted, ref } from 'vue';
+  import { useMessage } from 'fe-ent-core/es/hooks';
+  import { useTable } from 'fe-ent-core/es/components/table';
   import { optionsListApi } from '/@/api/select';
 
   import { demoListApi } from '/@/api/table';
   import { treeOptionsListApi } from '/@/api/tree';
   import { cloneDeep } from 'lodash';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
+  import type {
+    BasicColumn,
+    EditRecordRow,
+    TableActionItem,
+  } from 'fe-ent-core/es/components/table/interface';
+  import type { Ref } from 'vue';
 
   const columns: BasicColumn[] = [
     {
@@ -165,7 +166,6 @@
     },
   ];
   export default defineComponent({
-    components: { EntTable, EntTableAction },
     setup() {
       const { createMessage: msg } = useMessage();
       const currentEditKeyRef = ref('');
@@ -175,7 +175,7 @@
         titleHelpMessage: [
           '本例中修改[数字输入框]这一列时，同一行的[远程下拉]列的当前编辑数据也会同步发生改变',
         ],
-        columns: columns,
+        columns,
         showIndexColumn: false,
         showTableSetting: true,
         tableSetting: { fullScreen: true },
@@ -223,7 +223,7 @@
               currentEditKeyRef.value = '';
             }
             msg.success({ content: '数据已保存', key: 'saving' });
-          } catch (error) {
+          } catch {
             msg.error({ content: '保存失败', key: 'saving' });
           }
         } else {

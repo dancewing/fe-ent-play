@@ -1,12 +1,14 @@
 <template>
-  <EntPageWrapper v-loading="loadingRef" loading-tip="加载中..." title="Loading组件示例">
+  <ent-page-wrapper v-loading="loadingRef" loading-tip="加载中..." title="Loading组件示例">
     <div ref="wrapEl">
       <a-alert message="组件方式" />
-      <a-button class="my-4 mr-4" type="primary" @click="openCompFullLoading">
+      <ent-button class="my-4 mr-4" type="primary" @click="openCompFullLoading">
         全屏 Loading
-      </a-button>
-      <a-button class="my-4" type="primary" @click="openCompAbsolute"> 容器内 Loading </a-button>
-      <EntLoading
+      </ent-button>
+      <ent-button class="my-4" type="primary" @click="openCompAbsolute">
+        容器内 Loading
+      </ent-button>
+      <ent-loading
         :loading="loading"
         :absolute="absolute"
         :theme="theme"
@@ -16,26 +18,28 @@
 
       <a-alert message="函数方式" />
 
-      <a-button class="my-4 mr-4" type="primary" @click="openFnFullLoading">
+      <ent-button class="my-4 mr-4" type="primary" @click="openFnFullLoading">
         全屏 Loading
-      </a-button>
-      <a-button class="my-4" type="primary" @click="openFnWrapLoading"> 容器内 Loading </a-button>
+      </ent-button>
+      <ent-button class="my-4" type="primary" @click="openFnWrapLoading">
+        容器内 Loading
+      </ent-button>
 
       <a-alert message="指令方式" />
-      <a-button class="my-4 mr-4" type="primary" @click="openDirectiveLoading">
+      <ent-button class="my-4 mr-4" type="primary" @click="openDirectiveLoading">
         打开指令Loading
-      </a-button>
+      </ent-button>
     </div>
-  </EntPageWrapper>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, toRefs, ref } from 'vue';
-  import { EntLoading, useLoading } from 'fe-ent-core/lib/components/loading';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import { defineComponent, reactive, ref, toRefs } from 'vue';
+  import { useLoading } from 'fe-ent-core/es/components/loading';
   import { Alert } from 'ant-design-vue';
+  import type { ElRef } from 'fe-ent-core/es/types';
 
   export default defineComponent({
-    components: { EntLoading, EntPageWrapper, [Alert.name]: Alert },
+    components: { [Alert.name]: Alert },
     setup() {
       const wrapEl = ref<ElRef>(null);
 

@@ -1,5 +1,5 @@
-import { defHttp } from 'fe-ent-core/lib/utils/http/axios';
-import { AreaModel, AreaParams } from '../model/area-model';
+import { defHttp } from 'fe-ent-core/es/utils';
+import type { AreaModel, AreaParams } from '../model/area-model';
 
 enum Api {
   AREA_RECORD = '/cascader/getAreaRecord',

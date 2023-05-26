@@ -1,5 +1,5 @@
-import { defHttp } from 'fe-ent-core/lib/utils/http/axios';
-import { DemoOptionsItem, selectParams } from '../model/options-model';
+import { defHttp } from 'fe-ent-core/es/utils';
+import type { DemoOptionsItem, selectParams } from '../model/options-model';
 enum Api {
   OPTIONS_LIST = '/select/getDemoOptions',
 }

@@ -1,9 +1,9 @@
 <template>
-  <EntPageWrapper title="代码编辑器组件示例" contentFullHeight fixedHeight contentBackground>
+  <ent-page-wrapper title="代码编辑器组件示例" content-full-height fixed-height content-background>
     <template #extra>
       <a-space size="middle">
-        <a-button @click="showData" type="primary">获取数据</a-button>
-        <RadioGroup button-style="solid" v-model:value="modeValue" @change="handleModeChange">
+        <ent-button type="primary" @click="showData">获取数据</ent-button>
+        <RadioGroup v-model:value="modeValue" button-style="solid" @change="handleModeChange">
           <RadioButton value="application/json"> json数据 </RadioButton>
           <RadioButton value="htmlmixed"> html代码 </RadioButton>
           <RadioButton value="javascript"> javascript代码 </RadioButton>
@@ -11,13 +11,13 @@
       </a-space>
     </template>
     <CodeEditor v-model:value="value" :mode="modeValue" />
-  </EntPageWrapper>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
-  import { defineComponent, ref, unref, h } from 'vue';
+  import { defineComponent, h, ref, unref } from 'vue';
   import { CodeEditor, JsonPreview, MODE } from 'fe-ent-code-editor';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
-  import { Radio, Space, Modal } from 'ant-design-vue';
+  import { Modal, Radio, Space } from 'ant-design-vue';
+  import type { ChangeEvent } from 'fe-ent-core/es/types';
 
   const jsonData =
     '{"name":"BeJson","url":"http://www.xxx.com","page":88,"isNonProfit":true,"address":{"street":"科技园路.","city":"江苏苏州","country":"中国"},"links":[{"name":"Google","url":"http://www.xxx.com"},{"name":"Baidu","url":"http://www.xxx.com"},{"name":"SoSo","url":"http://www.xxx.com"}]}';
@@ -56,7 +56,6 @@
   export default defineComponent({
     components: {
       CodeEditor,
-      EntPageWrapper,
       RadioButton: Radio.Button,
       RadioGroup: Radio.Group,
       ASpace: Space,
@@ -96,6 +95,3 @@
     },
   });
 </script>
-<style>
-@import url("fe-ent-code-editor/dist/style.css");
-</style>

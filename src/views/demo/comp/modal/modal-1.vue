@@ -1,14 +1,16 @@
 <template>
-  <EntModal
+  <ent-modal
     v-bind="$attrs"
-    destroyOnClose
-    @register="register"
+    destroy-on-close
     title="Modal Title"
-    :helpMessage="['提示1', '提示2']"
+    :help-message="['提示1', '提示2']"
+    @register="register"
     @visible-change="handleShow"
   >
     <template #insertFooter>
-      <a-button type="primary" danger @click="setLines" :disabled="loading">点我更新内容</a-button>
+      <ent-button type="primary" danger :disabled="loading" @click="setLines"
+        >点我更新内容</ent-button
+      >
     </template>
     <template v-if="loading">
       <div class="empty-tips">加载中，稍等3秒……</div>
@@ -18,13 +20,12 @@
         <li v-for="index in lines" :key="index">加载完成{{ index }}！</li>
       </ul>
     </template>
-  </EntModal>
+  </ent-modal>
 </template>
 <script lang="ts">
   import { defineComponent, ref, watch } from 'vue';
-  import { EntModal, useModalInner } from 'fe-ent-core/lib/components/modal';
+  import { useModalInner } from 'fe-ent-core/es/components/modal';
   export default defineComponent({
-    components: { EntModal },
     setup() {
       const loading = ref(true);
       const lines = ref(10);

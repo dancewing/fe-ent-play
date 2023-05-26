@@ -2,7 +2,7 @@
   <ent-page-wrapper class="virtual-scroll-demo">
     <Divider>基础滚动示例</Divider>
     <div class="virtual-scroll-demo-wrap">
-      <ent-virtual-scroll :itemHeight="41" :items="data" :height="300" :width="300">
+      <ent-virtual-scroll :item-height="41" :items="data" :height="300" :width="300">
         <template #default="{ item }">
           <div class="virtual-scroll-demo__item">
             {{ item.title }}
@@ -13,7 +13,7 @@
 
     <Divider>即使不可见，也预先加载50条数据，防止空白</Divider>
     <div class="virtual-scroll-demo-wrap">
-      <ent-virtual-scroll :itemHeight="41" :items="data" :height="300" :width="300" :bench="50">
+      <ent-virtual-scroll :item-height="41" :items="data" :height="300" :width="300" :bench="50">
         <template #default="{ item }">
           <div class="virtual-scroll-demo__item">
             {{ item.title }}
@@ -25,23 +25,22 @@
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { EntVirtualScroll } from 'fe-ent-core/lib/components/virtual-scroll';
+  import type { Recordable } from 'fe-ent-core/es/types';
 
   import { Divider } from 'ant-design-vue';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
   const data: Recordable[] = (() => {
     const arr: Recordable[] = [];
     for (let index = 1; index < 20000; index++) {
       arr.push({
-        title: '列表项' + index,
+        title: `列表项${index}`,
       });
     }
     return arr;
   })();
   export default defineComponent({
-    components: { EntVirtualScroll, Divider, EntPageWrapper },
+    components: { Divider },
     setup() {
-      return { data: data };
+      return { data };
     },
   });
 </script>

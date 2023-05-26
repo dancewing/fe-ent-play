@@ -1,8 +1,7 @@
-import type { AppRouteModule } from 'fe-ent-core/lib/router/types';
+import { t } from 'fe-ent-core/es/hooks';
+import type { AppRouteRecordRaw } from 'fe-ent-core/es/router';
 
-import { t } from 'fe-ent-core/lib/hooks/web/use-i18n';
-
-const dashboard: AppRouteModule = {
+const dashboard: AppRouteRecordRaw = {
   path: '/about',
   name: 'About',
   component: 'LAYOUT',

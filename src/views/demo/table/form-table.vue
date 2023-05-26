@@ -1,12 +1,12 @@
 <template>
-  <EntTable @register="registerTable">
+  <ent-table @register="registerTable">
     <template #form-custom> custom-slot </template>
     <template #headerTop>
       <a-alert type="info" show-icon>
         <template #message>
           <template v-if="checkedKeys.length > 0">
             <span>已选中{{ checkedKeys.length }}条记录(可跨页)</span>
-            <a-button type="link" @click="checkedKeys = []" size="small">清空</a-button>
+            <ent-button type="link" size="small" @click="checkedKeys = []">清空</ent-button>
           </template>
           <template v-else>
             <span>未选中任何项目</span>
@@ -15,20 +15,20 @@
       </a-alert>
     </template>
     <template #toolbar>
-      <a-button type="primary" @click="getFormValues">获取表单数据</a-button>
+      <ent-button type="primary" @click="getFormValues">获取表单数据</ent-button>
     </template>
-  </EntTable>
+  </ent-table>
 </template>
 <script lang="ts">
   import { defineComponent, ref } from 'vue';
-  import { EntTable, useTable } from 'fe-ent-core/lib/components/table';
+  import { useTable } from 'fe-ent-core/es/components/table';
   import { getBasicColumns, getFormConfig } from './table-data';
   import { Alert } from 'ant-design-vue';
 
   import { demoListApi } from '/@/api/table';
 
   export default defineComponent({
-    components: { EntTable, AAlert: Alert },
+    components: { AAlert: Alert },
     setup() {
       const checkedKeys = ref<Array<string | number>>([]);
       const [registerTable, { getForm }] = useTable({
@@ -44,8 +44,8 @@
         rowSelection: {
           type: 'checkbox',
           selectedRowKeys: checkedKeys,
-          onSelect: onSelect,
-          onSelectAll: onSelectAll,
+          onSelect,
+          onSelectAll,
         },
       });
 

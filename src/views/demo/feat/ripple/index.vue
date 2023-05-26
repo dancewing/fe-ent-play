@@ -1,17 +1,15 @@
 <template>
-  <EntPageWrapper title="Ripple示例">
-    <div class="demo-box" v-ripple>content</div>
-  </EntPageWrapper>
+  <ent-page-wrapper title="Ripple示例">
+    <div v-ripple class="demo-box">content</div>
+  </ent-page-wrapper>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import RippleDirective from 'fe-ent-core/lib/directives/ripple';
-  import { EntPageWrapper } from 'fe-ent-core/lib/components/page';
+  import { RippleDirective } from 'fe-ent-core/es/directives';
 
   export default defineComponent({
-    components: { EntPageWrapper },
     directives: {
-      Ripple: RippleDirective,
+      ripple: RippleDirective,
     },
   });
 </script>

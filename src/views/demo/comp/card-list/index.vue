@@ -2,16 +2,15 @@
   <ent-page-wrapper title="卡片列表示例" content="基础封装">
     <ent-card-list :params="params" :api="demoListApi" @get-method="getMethod" @delete="handleDel">
       <template #header>
-        <a-button type="primary" color="error"> 按钮1 </a-button>
-        <a-button type="primary" color="success"> 按钮2 </a-button>
+        <ent-button type="primary" color="error"> 按钮1 </ent-button>
+        <ent-button type="primary" color="success"> 按钮2 </ent-button>
       </template>
     </ent-card-list>
   </ent-page-wrapper>
 </template>
 <script lang="ts" setup>
   import { demoListApi } from '/@/api/table';
-  import { useMessage } from 'fe-ent-core/lib/hooks/web/use-message';
-  import { EntCardList, EntPageWrapper } from 'fe-ent-core/lib/components';
+  import { useMessage } from 'fe-ent-core/es/hooks';
   const { notification } = useMessage();
   // 请求api时附带参数
   const params = {};

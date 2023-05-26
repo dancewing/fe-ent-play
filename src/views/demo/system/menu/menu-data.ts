@@ -1,9 +1,8 @@
-import { BasicColumn } from 'fe-ent-core/lib/components/table';
-import { FormSchema } from 'fe-ent-core/lib/components/form';
 import { h } from 'vue';
+import { EntIcon } from 'fe-ent-core';
 import { Tag } from 'ant-design-vue';
-import { EntIcon } from 'fe-ent-core/lib/components/icon';
-
+import type { BasicColumn } from 'fe-ent-core/es/components/table/interface';
+import type { FormSchema } from 'fe-ent-core/es/components/form/interface';
 export const columns: BasicColumn[] = [
   {
     title: '菜单名称',
@@ -39,10 +38,10 @@ export const columns: BasicColumn[] = [
     width: 80,
     customRender: ({ record }) => {
       const status = record.status;
-      const enable = ~~status === 0;
+      const enable = Math.trunc(status) === 0;
       const color = enable ? 'green' : 'red';
       const text = enable ? '启用' : '停用';
-      return h(Tag, { color: color }, () => text);
+      return h(Tag, { color }, () => text);
     },
   },
   {

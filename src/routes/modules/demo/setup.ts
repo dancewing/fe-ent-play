@@ -1,8 +1,7 @@
-import type { AppRouteModule } from 'fe-ent-core/lib/router/types';
+import { t } from 'fe-ent-core/es/hooks';
+import type { AppRouteRecordRaw } from 'fe-ent-core/es/router';
 
-import { t } from 'fe-ent-core/lib/hooks/web/use-i18n';
-
-const setup: AppRouteModule = {
+const setup: AppRouteRecordRaw = {
   path: '/setup',
   name: 'SetupDemo',
   component: 'LAYOUT',
