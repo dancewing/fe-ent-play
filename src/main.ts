@@ -1,6 +1,6 @@
 import 'uno.css';
 // Register icon sprite
-//import 'virtual:svg-icons-register';
+import 'virtual:svg-icons-register';
 
 import { createApp } from 'vue';
 import EntCore, { registerAntGlobComp } from 'fe-ent-core';

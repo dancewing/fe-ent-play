@@ -8,7 +8,7 @@
     "url": "https://github.com/ent-framework/fe-ent-play"
   },
   "scripts": {
-    "dev": "vite --mode=development -d",
+    "dev": "vite --mode=development",
     "build": "cross-env NODE_ENV=production vite build",
     "clean": "rimraf dist",
     "clean:cache": "rimraf node_modules/.cache/ && rimraf node_modules/.vite",
@@ -25,15 +25,15 @@
   },
   "dependencies": {
     "ant-design-vue": "3.2.17",
-    "fe-ent-code-editor": "^1.5.47",
-    "fe-ent-core": "^1.5.47",
-    "fe-ent-echarts": "^1.5.47",
-    "fe-ent-flow-chart": "^1.5.47",
-    "fe-ent-login": "^1.5.47",
-    "fe-ent-markdown": "^1.5.47",
-    "fe-ent-layout": "^1.5.47",
-    "fe-ent-qrcode": "^1.5.47",
-    "fe-ent-tinymce": "^1.5.47",
+    "fe-ent-code-editor": "^2.0.0",
+    "fe-ent-core": "^2.0.0",
+    "fe-ent-echarts": "^2.0.0",
+    "fe-ent-flow-chart": "^2.0.0",
+    "fe-ent-login": "^2.0.0",
+    "fe-ent-markdown": "^2.0.0",
+    "fe-ent-layout": "^2.0.0",
+    "fe-ent-qrcode": "^2.0.0",
+    "fe-ent-tinymce": "^2.0.0",
     "vue": "3.2.47"
   },
   "devDependencies": {
@@ -61,7 +61,7 @@
     "eslint-plugin-prettier": "^4.2.0",
     "eslint-plugin-vue": "^9.10.0",
     "esno": "^0.10.1",
-    "fe-ent-vue-scripts": "^1.5.47",
+    "fe-ent-vue-scripts": "^2.0.0",
     "fs-extra": "^10.0.0",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
